@@ -1,0 +1,14 @@
+{{#section 'head'}}
+<!-- 구글이 페이지를 무시하도록 설정 -->
+	<meta name="robots" content="noindex">
+{{/section}}
+
+<h1>테스트 페이지</h1>
+<p>head 요소에 필요한 meta, script 등만 추가하는 헬퍼테스트!</p>
+
+{{#section 'scripts'}}
+	<script>
+		document.querySelector('body')
+			.insertAdjacentHTML('beforeEnd', '<small>(scripting works!)</small>')
+	</script>
+{{/section}}

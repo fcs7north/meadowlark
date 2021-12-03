@@ -5,6 +5,7 @@
   "main": "meadowlark.js",
   "scripts": {
     "nm": "nodemon meadowlark.js",
+    "nme": "nodemon echo-headers.js",
     "start": "node meadowlark.js",
     "test": "jest",
 	 "lint": "eslint meadowlark.js lib"
