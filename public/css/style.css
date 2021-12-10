@@ -1,0 +1,11 @@
+body {
+	padding: .5rem 3rem;
+}
+
+.banner {
+	padding: .5rem 1.5rem;
+	background-color: chocolate;
+	font-size: 1.8rem;
+	font-weight: bolder;
+	color: burlywood;
+}

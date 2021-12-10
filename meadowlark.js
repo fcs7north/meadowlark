@@ -1,6 +1,7 @@
 const handlers = require('./lib/handlers')
 const express = require('express')
 const { engine } = require('express-handlebars')
+const bodyParser = require('body-parser')
 const app = express()
 const port = process.env.PORT || 3000
 
@@ -17,13 +18,17 @@ app.engine('handlebars', engine({
 app.set('view engine', 'handlebars')
 
 app.use(express.static(__dirname + '/public'))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 // router
 app.get('/', handlers.home)
-
 app.get('/about', handlers.about)
-
 app.get('/section-test', handlers.sectionTest)
+
+// form
+app.get('/newsletter-signup', handlers.newsletterSignup)
+app.post('/newsletter-signup/process', handlers.newsletterSignupProcess)
+app.get('/newsletter-signup/thank-you', handlers.newsletterSignupThankYou)
 
 // custom 404 page
 app.use(handlers.notFound)

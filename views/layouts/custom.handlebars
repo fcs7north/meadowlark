@@ -1,31 +1,28 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Meadowlark Travel</title>
-	<style>
-		body {
-			padding: .5rem 3rem;
-		}
-	</style>
+	{{> head}}
 </head>
 <body>
 	<header>
-		<h1 style="background-color: yellowgreen; color: #000">커스텀 레이아웃 적용</h1>
-		<p style="text-align: center">
-			<a href="/">홈페이지</a>
-			|
-			<a href="/about">소개페이지</a>
-			|
-			<a href="/adjfoie">404 - 페이지</a>
-		</p>
+		<h1 style="background-color: yellowgreen; color: #000; font-size: 1.2rem; font-weight: bold; padding: .5rem 1rem">
+				{{#if title}}
+					{{title}}
+				{{^}}
+					커스텀 레이아웃 적용
+				{{/if}}
+		</h1>
+
+		{{> lnb}}
+		
 		<p style="text-align: center;">
 			<img src="/img/logo.png" alt="Meadowlark Travel Logo" width="200">
 		</p>
 	</header>
 
 	{{{ body }}}
+
+	{{> social/kakao}}
+	{{> social/twitter}}
 </body>
 </html>

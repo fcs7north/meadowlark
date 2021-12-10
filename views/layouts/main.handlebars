@@ -1,34 +1,21 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Meadowlark Travel</title>
-	<style>
-		body {
-			padding: .5rem 3rem;
-		}
-	</style>
+	{{> head}}
 </head>
 <body>
 	{{!-- 알려지면 곤란한 주석은 여기에 --}}
 	<!-- 알려져도 상관없다면 여기에 -->
 	<header>
-		<p style="text-align: center">
-			<a href="/">홈페이지</a>
-			|
-			<a href="/about">소개페이지</a>
-			|
-			<a href="/section-test">Section Test 페이지</a>
-			|
-			<a href="/adjfoie">404 - 페이지</a>
-		</p>
+		{{> lnb}}
+		
 		<p style="text-align: center;">
 			<a href="/"><img src="/img/logo-2.png" alt="Meadowlark Travel Logo" width="200"></a>
 		</p>
 	</header>
 
 	{{{ body }}}
+
+	{{> social/facebook}}
 </body>
 </html>
