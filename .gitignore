@@ -1,4 +1,5 @@
 # npm 이 설치하는 패키지는 무시합니다.
+_cheat_sheet
 node_modules
 *~
 .DS_Store

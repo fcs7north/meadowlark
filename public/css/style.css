@@ -9,3 +9,11 @@ body {
 	font-weight: bolder;
 	color: burlywood;
 }
+
+#lnb-menu {
+	padding-bottom: 1.5rem;
+	text-align: center;
+}
+#lnb-menu > a {
+	display: inline-block;
+}
