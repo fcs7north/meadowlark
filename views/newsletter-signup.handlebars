@@ -35,11 +35,11 @@ document.getElementById('newsletterSignupForm')
 			return resp.json()
 		})
 		.then(json => {
-			container.innerHTML = '<b>Thank you for signing up!</b>'
+			container.innerHTML = '<div style="padding: 1.5rem 0; text-align:center; font-size: 1.5rem; font-weight: bold; color: rgb(40, 57, 186);">Thank you for signing up!</div>'
 		})
 		.catch(err => {
-			container.innerHTML = `<b>We're sorry, we had a problem ` +
-				`signing you up.	Please <a href="/newsletter">try again</a>`
+			container.innerHTML = `<div style="padding: 1.5rem 0; text-align:center; font-size: 1.5rem; font-weight: bold; color: red;">We're sorry, we had a problem ` +
+				`signing you up.<br>Please <a href="/newsletter">try again</a></div>`
 		})
 })
 </script>

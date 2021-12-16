@@ -1,8 +1,10 @@
 const handlers = require('./lib/handlers')
 const express = require('express')
+const app = express()
 const { engine } = require('express-handlebars')
 const bodyParser = require('body-parser')
-const app = express()
+const multiparty = require('multiparty')
+
 const port = process.env.PORT || 3000
 
 app.engine('handlebars', engine({
@@ -17,6 +19,7 @@ app.engine('handlebars', engine({
 }))
 app.set('view engine', 'handlebars')
 
+// middleware
 app.use(express.static(__dirname + '/public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
@@ -25,15 +28,26 @@ app.use(bodyParser.json())
 app.get('/', handlers.home)
 app.get('/about', handlers.about)
 app.get('/section-test', handlers.sectionTest)
+app.get('/vacation-photo', handlers.vacationPhoto)
+app.get('/vacation-photo-thank-you', handlers.vacationPhotoThankYou)
+app.get('/vacation-fetch-photo', handlers.vacationFetchPhoto)
 
 // form
 app.get('/newsletter-signup', handlers.newsletterSignup)
 app.post('/newsletter-signup/process', handlers.newsletterSignupProcess)
 app.get('/newsletter-signup/thank-you', handlers.newsletterSignupThankYou)
+app.post('/contest/vacation-photo/:year/:month', (req, res) => {
+	const form = new multiparty.Form()
+	form.parse(req, (err, fields, files) => {
+		if(err) return res.status(500).send({ error: err.message })
+		handlers.vacationPhotoContestProcess(req, res, fields, files)
+	})
+})
 
 // fetch
 app.get('/newsletter', handlers.newsletter)
 app.post('/api/newsletter-signup', handlers.api.newsletterSignup)
+app.post('/api/vacation-fetch-photo', handlers.api.vacationPhotoContestProcess)
 
 // custom 404 page
 app.use(handlers.notFound)
