@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
 	{{> head}}
+	{{{_sections.head}}}
 </head>
 <body>
 	{{!-- 알려지면 곤란한 주석은 여기에 --}}
@@ -14,8 +15,17 @@
 		</p>
 	</header>
 
+	{{#if flash}}
+	<div class="alert alert-{{flash.type}} alert-dismissible fade show" role="alert">
+		<strong>{{flash.intro}}</strong> {{{flash.message}}}
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+	{{/if}}
+
 	{{{ body }}}
 
 	{{> social/facebook}}
+	
+	{{{_sections.scripts}}}
 </body>
 </html>

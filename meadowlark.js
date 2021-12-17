@@ -4,6 +4,10 @@ const app = express()
 const { engine } = require('express-handlebars')
 const bodyParser = require('body-parser')
 const multiparty = require('multiparty')
+const cookieParser = require('cookie-parser') // 쿠키 미들웨어
+const expressSession = require('express-session') // 세션 미들웨어
+const credentials = require('./credentials')
+const flashMiddleware = require('./lib/middleware/flash')
 
 const port = process.env.PORT || 3000
 
@@ -23,6 +27,13 @@ app.set('view engine', 'handlebars')
 app.use(express.static(__dirname + '/public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+app.use(cookieParser(credentials.cookieSecret))
+app.use(expressSession({
+	resave: false,
+	saveUninitialized: false,
+	secret: credentials.cookieSecret
+}))
+app.use(flashMiddleware)
 
 // router
 app.get('/', handlers.home)
@@ -31,6 +42,15 @@ app.get('/section-test', handlers.sectionTest)
 app.get('/vacation-photo', handlers.vacationPhoto)
 app.get('/vacation-photo-thank-you', handlers.vacationPhotoThankYou)
 app.get('/vacation-fetch-photo', handlers.vacationFetchPhoto)
+
+// router for session
+app.get('/session-newsletter-signup', handlers.newsletterSignupForSession)
+app.get('/session-newsletter-archive', handlers.newsArchiveForSession)
+
+// router for flash message test
+app.get('/flash-message-test-home', handlers.flashMessageTestHome)
+app.get('/flash-message-test-result', handlers.flashMessageTestResult)
+app.get('/flash-message-test-result-view', handlers.flashMessageTestResultView)
 
 // form
 app.get('/newsletter-signup', handlers.newsletterSignup)
